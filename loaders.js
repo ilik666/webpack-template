@@ -6,8 +6,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 // JS loader
 const JSLoader = {
 	test: /\.js$/i,
+	loader: 'babel-loader',
 	exclude: /node_modules/,
-	use: [ 'babel-loader' ]
 }
 
 // HTML loader
@@ -25,19 +25,21 @@ const StyleLoader = (mode) => {
 				publicPath: (resourcePath, context) => {
 					return path.relative(path.dirname(resourcePath), context) + '/'
 				}
+				// publicPath: ''
 			}
 		},
 		'css-loader',
 	]
 
-	mode ? _loaders.push('postcss-loader', 'sass-loader') : _loaders.push('sass-loader')
+	mode ?
+		_loaders.push('postcss-loader', 'sass-loader')
+		: _loaders.push('sass-loader')
 
 	return {
 		test: /\.(s[ac]|c)ss$/i,
 		use: _loaders
 	}
 }
-
 
 // IMAGES loader
 const IMAGESLoader = (mode) => ({
@@ -46,7 +48,7 @@ const IMAGESLoader = (mode) => ({
 		{
 			loader: 'file-loader',
 			options: {
-				name: `./assets/${ fileName('[ext]', mode) }`
+				name: `./${PATHS.assets}${ fileName('[ext]', mode) }`
 			}
 		}
 	]
@@ -55,7 +57,12 @@ const IMAGESLoader = (mode) => ({
 // FONTS loader
 const FONTSLoader = {
 		test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-		use: [ 'file-loader' ]
+		use: [{
+			loader: 'file-loader',
+			options: {
+				name: '[name].[ext]'
+			}
+		}]
 }
 
 module.exports = {

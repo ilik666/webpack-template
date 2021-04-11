@@ -1,0 +1,39 @@
+// size to one line
+@mixin box($width,$height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// px to rem
+@function rem($pixels, $context: $mainFontSize) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return $pixels / $context * 1rem;
+}
+
+
+// placeholder helper
+@mixin placeholder {
+  ::-webkit-input-placeholder { @content };
+  :-moz-placeholder           { @content };
+  ::-moz-placeholder          { @content };
+  :-ms-input-placeholder      { @content };
+}
+
+// helper background size Cover
+@mixin cover-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+// helper background size Contain
+@mixin contain-background {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}

@@ -1,2 +1,3 @@
-import './assets/styles/scss/style.scss'
-// import './index.html'
+import './assets/scss/style.scss'
+
+import './assets/js/common'
