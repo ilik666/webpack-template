@@ -45,6 +45,6 @@ const CopyWebpackPlugins = new _CopyWebpackPlugins({
 module.exports = {
 	HTMLWebpackPlugin,
 	MiniCssExtractPlugin,
-	// CopyWebpackPlugins,
+	CopyWebpackPlugins,
 	CleanWebpackPlugin: new CleanWebpackPlugin()
 }

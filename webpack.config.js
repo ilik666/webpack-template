@@ -3,8 +3,6 @@ const { PATHS, fileName } = require('./helpers-utilities')
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
 
-const _MiniCssExtractPlugin = require("mini-css-extract-plugin")
-
 const {
 		JSLoader,
 		HTMLLoader,
@@ -15,11 +13,12 @@ const {
 const {
 	HTMLWebpackPlugin,
 	MiniCssExtractPlugin,
-	// CopyWebpackPlugins,
+	CopyWebpackPlugins,
 	CleanWebpackPlugin } = require('./plugins')
 
 module.exports = {
 	context: PATHS.src,
+
 	mode: 'development',
 
 	target: isProd ? 'browserslist': 'web',
@@ -29,7 +28,7 @@ module.exports = {
 	},
 
 	output: {
-		filename: `./assets/js/${ fileName('js', isProd) }`,
+		filename: `./${PATHS.assets}js/${ fileName('js', isProd) }`,
 		path: PATHS.dist,
 		publicPath: ''
 	},
@@ -47,7 +46,7 @@ module.exports = {
 	plugins: [
 		HTMLWebpackPlugin(isProd),
 		MiniCssExtractPlugin(isProd),
-		// CopyWebpackPlugins,
+		CopyWebpackPlugins,
 		CleanWebpackPlugin
 	],
 
