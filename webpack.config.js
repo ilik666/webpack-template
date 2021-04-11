@@ -1,20 +1,21 @@
 const path = require('path')
-
-const HTMLWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyWebpackPlugins = require('copy-webpack-plugin')
-
-const PATHS = {
-	src: path.resolve(__dirname, 'src'),
-	dist: path.resolve(__dirname, 'dist'),
-}
+const { PATHS, fileName } = require('./helpers-utilities')
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
 
-const fileName = (ext) => isDev ? `[name].${ext}` : `[name].[contenthash].${ext}`
+const {
+		JSLoader,
+		HTMLLoader,
+		StyleLoader,
+		IMAGESLoader,
+		FONTSLoader } = require('./loaders')
+
+const {
+	HTMLWebpackPlugin,
+	MiniCssExtractPlugin,
+	// CopyWebpackPlugins,
+	CleanWebpackPlugin } = require('./plugins')
 
 module.exports = {
 	context: PATHS.src,
@@ -25,10 +26,22 @@ module.exports = {
 	},
 
 	output: {
-		filename: `./js/${ fileName('js') }`,
+		filename: `./assets/js/${ fileName('js', isProd) }`,
 		path: PATHS.dist,
 		publicPath: ''
 	},
+
+	module: {
+		rules: [
+			JSLoader,
+			HTMLLoader,
+			StyleLoader(isProd),
+			IMAGESLoader(isProd),
+			FONTSLoader
+		]
+	},
+
+	devtool: 'source-map',
 
 	devServer: {
 		historyApiFallback: true,
@@ -40,50 +53,9 @@ module.exports = {
 	},
 
 	plugins: [
-		new CleanWebpackPlugin(),
-		new HTMLWebpackPlugin({
-			template: `./index.html`,
-			filename: 'index.html',
-			minify: {
-				collapseWhitespace: isProd
-			}
-		}),
-		new MiniCssExtractPlugin({
-			filename: `./css/${ fileName('css') }`
-		}),
-		// new CopyWebpackPlugins({
-		// 	patterns: [
-		// 		{ from: '', to: ''}
-		// 	]
-		// })
-	],
-
-	module: {
-		rules: [
-			{
-				test: /\.js$/i,
-				exclude: /node_modules/,
-				use: [ 'babel-loader' ]
-			},
-			{
-				test: /\.(?:|gif|png|jpe?g|svg)$/i,
-				use: ['file-loader']
-			},
-			{
-				test: /\.(s[ac]|c)ss$/i,
-				use: [
-					{
-						loader: MiniCssExtractPlugin.loader,
-						options: {
-							publicPath: (resourcePath, context) => {
-								return path.relative(path.dirname(resourcePath), context) +'/'
-							}
-						}
-					},
-					'css-loader',
-					'sass-loader'
-				]
-			},
-		]
-	}
+		HTMLWebpackPlugin(isProd),
+		MiniCssExtractPlugin(isProd),
+		// CopyWebpackPlugins,
+		CleanWebpackPlugin
+	]
 }

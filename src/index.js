@@ -1,2 +1,2 @@
-import './syle.css'
-import './syle.scss'
+import './assets/styles/scss/style.scss'
+// import './index.html'
