@@ -6,7 +6,8 @@ const _MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const _CopyWebpackPlugins = require('copy-webpack-plugin')
 
-const HTMLWebpackPlugin = (mode) => {
+
+const HTMLWebpackPlugin = mode => {
 	return new _HTMLWebpackPlugin({
 		template: `./index.html`,
 		filename: 'index.html',
@@ -16,7 +17,7 @@ const HTMLWebpackPlugin = (mode) => {
 	})
 }
 
-const MiniCssExtractPlugin = (mode) => {
+const MiniCssExtractPlugin = mode => {
 	return new _MiniCssExtractPlugin({
 		filename: `./${PATHS.assets}css/${ fileName('css', mode) }`
 	})
@@ -42,9 +43,11 @@ const CopyWebpackPlugins = new _CopyWebpackPlugins({
 	]
 })
 
+
+
 module.exports = {
 	HTMLWebpackPlugin,
 	MiniCssExtractPlugin,
 	CopyWebpackPlugins,
-	CleanWebpackPlugin: new CleanWebpackPlugin()
+	CleanWebpackPlugin: new CleanWebpackPlugin(),
 }

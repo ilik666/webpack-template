@@ -17,7 +17,7 @@ const HTMLLoader = {
 }
 
 //SCSS/SASS or CSS loader
-const StyleLoader = (mode) => {
+const StyleLoader = mode => {
 	let _loaders = [
 		{
 			loader: MiniCssExtractPlugin.loader,
@@ -41,7 +41,7 @@ const StyleLoader = (mode) => {
 }
 
 // IMAGES loader
-const IMAGESLoader = (mode) => ({
+const IMAGESLoader = mode => ({
 	test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
 	use: [
 		{
@@ -55,7 +55,7 @@ const IMAGESLoader = (mode) => ({
 
 // FONTS loader
 const FONTSLoader = {
-	test: /\.(woff(2)?|eot|ttf|otf|svg)$/,
+	test: /\.(woff(2)?|eot|ttf|otf|svg)$/i,
 	use: [
 		{
 			loader: 'file-loader',
