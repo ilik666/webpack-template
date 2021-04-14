@@ -25,7 +25,6 @@ const StyleLoader = (mode) => {
 				publicPath: (resourcePath, context) => {
 					return path.relative(path.dirname(resourcePath), context) + '/'
 				}
-				// publicPath: ''
 			}
 		},
 		'css-loader',
@@ -44,7 +43,7 @@ const StyleLoader = (mode) => {
 // IMAGES loader
 const IMAGESLoader = (mode) => ({
 	test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
-		use: [
+	use: [
 		{
 			loader: 'file-loader',
 			options: {
@@ -56,13 +55,15 @@ const IMAGESLoader = (mode) => ({
 
 // FONTS loader
 const FONTSLoader = {
-		test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-		use: [{
+	test: /\.(woff(2)?|eot|ttf|otf|svg)$/,
+	use: [
+		{
 			loader: 'file-loader',
 			options: {
 				name: '[name].[ext]'
 			}
-		}]
+		}
+	]
 }
 
 module.exports = {

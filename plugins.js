@@ -18,7 +18,7 @@ const HTMLWebpackPlugin = (mode) => {
 
 const MiniCssExtractPlugin = (mode) => {
 	return new _MiniCssExtractPlugin({
-		filename: `./assets/css/${ fileName('css', mode) }`
+		filename: `./${PATHS.assets}css/${ fileName('css', mode) }`
 	})
 }
 

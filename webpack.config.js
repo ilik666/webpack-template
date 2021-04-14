@@ -11,10 +11,10 @@ const {
 		FONTSLoader } = require('./loaders')
 
 const {
-	HTMLWebpackPlugin,
-	MiniCssExtractPlugin,
-	CopyWebpackPlugins,
-	CleanWebpackPlugin } = require('./plugins')
+		HTMLWebpackPlugin,
+		MiniCssExtractPlugin,
+		CopyWebpackPlugins,
+		CleanWebpackPlugin } = require('./plugins')
 
 module.exports = {
 	context: PATHS.src,
@@ -44,10 +44,10 @@ module.exports = {
 	},
 
 	plugins: [
+		CleanWebpackPlugin,
 		HTMLWebpackPlugin(isProd),
 		MiniCssExtractPlugin(isProd),
-		CopyWebpackPlugins,
-		CleanWebpackPlugin
+		CopyWebpackPlugins
 	],
 
 	resolve: {
