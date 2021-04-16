@@ -25,11 +25,11 @@ const MiniCssExtractPlugin = mode => {
 
 const CopyWebpackPlugins = new _CopyWebpackPlugins({
 	patterns: [
-		// Images:
-		{
-			from: `${PATHS.src}/${PATHS.assets}images`,
-			to: `${PATHS.assets}images`
-		},
+		// // Images:
+		// {
+		// 	from: `${PATHS.src}/${PATHS.assets}images`,
+		// 	to: `${PATHS.assets}images`
+		// },
 		// Fonts:
 		{
 			from: `${PATHS.src}/${PATHS.assets}fonts`,

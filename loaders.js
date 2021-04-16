@@ -10,15 +10,16 @@ const JSLoader = {
 	exclude: /node_modules/,
 }
 
-// HTML loader
-const HTMLLoader = {
-	test: /\.html$/i,
-	use: [ 'html-loader' ]
-}
+// // HTML loader
+// const HTMLLoader = {
+// 	test: /\.html$/i,
+// 	loader: 'html-loader'
+// }
 
 //SCSS/SASS or CSS loader
 const StyleLoader = mode => {
 	let _loaders = [
+		'style-loader',
 		{
 			loader: MiniCssExtractPlugin.loader,
 			options: {
@@ -47,7 +48,7 @@ const IMAGESLoader = mode => ({
 		{
 			loader: 'file-loader',
 			options: {
-				name: `./${PATHS.assets}${ fileName('[ext]', mode) }`
+				name: `./${PATHS.assets}images/[folder]/${ fileName('[ext]', mode) }`,
 			}
 		}
 	]

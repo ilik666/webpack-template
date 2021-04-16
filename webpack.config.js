@@ -5,10 +5,11 @@ const isProd = !isDev
 
 const {
 		JSLoader,
-		HTMLLoader,
+		// HTMLLoader,
 		StyleLoader,
 		IMAGESLoader,
 		FONTSLoader } = require('./loaders')
+
 
 const {
 		HTMLWebpackPlugin,
@@ -35,26 +36,26 @@ module.exports = {
 
 	module: {
 		rules: [
+			// HTMLLoader,
 			JSLoader,
 			StyleLoader(isProd),
-			IMAGESLoader(isProd),
 			FONTSLoader,
-			HTMLLoader
+			IMAGESLoader(isProd)
 		]
 	},
 
 	plugins: [
 		CleanWebpackPlugin,
+		CopyWebpackPlugins,
 		HTMLWebpackPlugin(isProd),
 		MiniCssExtractPlugin(isProd),
-		CopyWebpackPlugins
 	],
 
 	resolve: {
 		extensions: ['.js']
 	},
 
-	devtool: 'source-map',
+	devtool: isProd ? false : 'source-map',
 
 	devServer: {
 		historyApiFallback: true,
