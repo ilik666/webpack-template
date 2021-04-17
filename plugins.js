@@ -4,16 +4,17 @@ const _HTMLWebpackPlugin = require('html-webpack-plugin')
 const _MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const _CopyWebpackPlugins = require('copy-webpack-plugin')
-
+const { VueLoaderPlugin } = require('vue-loader')
 
 const HTMLWebpackPlugin = mode => {
 	return new _HTMLWebpackPlugin({
-		hash: false,
 		template: `${PATHS.src}/index.html`,
 		filename: './index.html',
 		minify: {
+			removeComments: mode,
 			collapseWhitespace: mode
-		}
+		},
+		// inject: false
 	})
 }
 
@@ -47,5 +48,6 @@ module.exports = {
 	HTMLWebpackPlugin,
 	MiniCssExtractPlugin,
 	CopyWebpackPlugins,
+	VueLoaderPlugin: new VueLoaderPlugin(),
 	CleanWebpackPlugin: new CleanWebpackPlugin(),
 }

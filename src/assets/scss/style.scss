@@ -40,7 +40,6 @@ ol {
 }
 
 a {
-  //color: $mainColor;
   text-decoration: underline;
   &:hover { text-decoration: none }
 }
@@ -110,3 +109,15 @@ button { outline: none }
 
 @import "./modules/modules";
 @import "./components/components";
+
+body {
+  background-color: olive;
+}
+.test {
+  width: 130px;
+  height: 130px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("../images/general/logo.png");
+}

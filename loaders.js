@@ -1,23 +1,29 @@
-const path = require('path')
-const { PATHS, fileName } = require('./helpers-utilities')
-
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
-// JS loader
-const JSLoader = {
+// JS Loader
+const VueLoader = {
 	test: /\.js$/i,
 	loader: 'babel-loader',
 	exclude: /node_modules/,
 }
 
+// Vue Loader
+const JSLoader = {
+	test: /\.vue$/i,
+	loader: 'vue-loader',
+	options: {
+		loader: 'vue-style-loader!css-loader!sass-loader'
+	}
+}
+
 //SCSS/SASS or CSS loader
 const StyleLoader = mode => {
-	let _loaders = [
+	const _loaders = [
 		{
 			loader: MiniCssExtractPlugin.loader,
 			options: {
-			// 	// publicPath: (resourcePath, context) => path.relative(path.dirname(resourcePath), context) + '/'
-				publicPath: '../../'
+				publicPath: '/'
+				// publicPath: '../../' // Найти оптимальное решение временно в лоб хД
 			}
 		},
 		'css-loader'
@@ -34,17 +40,17 @@ const StyleLoader = mode => {
 }
 
 // IMAGES loader
-const IMAGESLoader = (mode = false) => ({
+const IMAGESLoader = {
 	test: /\.(png|jpe?g|gif|svg)$/i,
 	use: [
 		{
 			loader: 'file-loader',
 			options: {
-				name: '[path][name].[ext]',
+				name: '[path][name].[ext]'
 			}
 		}
 	]
-})
+}
 
 // FONTS loader
 const FONTSLoader = {
@@ -60,6 +66,7 @@ const FONTSLoader = {
 }
 
 module.exports = {
+	VueLoader,
 	JSLoader,
 	StyleLoader,
 	IMAGESLoader,

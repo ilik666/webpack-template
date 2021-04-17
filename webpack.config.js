@@ -4,12 +4,14 @@ const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
 
 const {
+		VueLoader,
 		JSLoader,
 		StyleLoader,
 		IMAGESLoader,
 		FONTSLoader } = require('./loaders')
 
 const {
+		VueLoaderPlugin,
 		HTMLWebpackPlugin,
 		MiniCssExtractPlugin,
 		CopyWebpackPlugins,
@@ -27,15 +29,29 @@ module.exports = {
 	},
 
 	output: {
-		filename: `./${PATHS.assets}js/${ fileName('js', isProd) }`,
+		filename: `./${PATHS.assets}js/${ fileName('js', true) }`,
 		path: PATHS.dist,
 		publicPath: ''
 	},
 
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				vendor: {
+					test: /node_modules/,
+					name: 'vendors',
+					chunks: "all",
+					enforce: true
+				}
+			}
+		}
+	},
+
 	module: {
 		rules: [
+			VueLoader,
 			JSLoader,
-			IMAGESLoader(),
+			IMAGESLoader,
 			StyleLoader(isProd),
 			FONTSLoader
 		]
@@ -43,13 +59,17 @@ module.exports = {
 
 	plugins: [
 		CleanWebpackPlugin,
+		CopyWebpackPlugins,
 		HTMLWebpackPlugin(isProd),
 		MiniCssExtractPlugin(isProd),
-		CopyWebpackPlugins
+		VueLoaderPlugin
 	],
 
 	resolve: {
-		extensions: ['.js']
+		alias: {
+			'vue$': 'vue/dist/vue.js'
+		},
+		extensions: ['.js', '.vue']
 	},
 
 	devtool: isProd ? false : 'source-map',
@@ -61,7 +81,6 @@ module.exports = {
 		compress: true,
 		// hot: true,
 		port: 3000,
-		overlay: false
+		overlay: true
 	}
-
 }
