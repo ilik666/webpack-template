@@ -16,6 +16,12 @@ const JSLoader = {
 	}
 }
 
+const PugLoader = {
+	test: /\.pug$/i,
+	loader: 'pug-loader',
+	exclude: /node_modules/,
+}
+
 //SCSS/SASS or CSS loader
 const StyleLoader = mode => {
 	const _loaders = [
@@ -67,6 +73,7 @@ const FONTSLoader = {
 
 module.exports = {
 	VueLoader,
+	PugLoader,
 	JSLoader,
 	StyleLoader,
 	IMAGESLoader,

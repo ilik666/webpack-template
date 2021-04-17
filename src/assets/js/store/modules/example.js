@@ -1,6 +1,6 @@
 export default {
 	state: {
-		message: 'Hello to the star wars project'
+		message: 'Star Wars'
 	},
 
 	mutations: { },

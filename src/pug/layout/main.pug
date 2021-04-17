@@ -1,5 +1,5 @@
-include ../helpers/mixins
-include ../helpers/variables
+include ../helpers/mixin
+include ../helpers/vars
 block variables
 
 doctype html
@@ -16,19 +16,18 @@ html(lang="ru-RU")
 
 		title #{ title }
 
-		link(rel='apple-touch-icon' sizes='180x180' href='static/favicons/apple-touch-icon.png')
-		link(rel='icon' type='image/png' sizes='32x32' href='static/favicons/favicon-32x32.png')
-		link(rel='icon' type='image/png' sizes='16x16' href='static/favicons/favicon-16x16.png')
-		link(rel='shortcut icon' href='static/favicons/favicon.ico')
-		link(rel='manifest' href='static/favicons/site.webmanifest')
+		link(rel='apple-touch-icon' sizes='180x180' href='/favicons/apple-touch-icon.png')
+		link(rel='icon' type='image/png' sizes='32x32' href='/favicons/favicon-32x32.png')
+		link(rel='icon' type='image/png' sizes='16x16' href='/favicons/favicon-16x16.png')
+		link(rel='shortcut icon' href='/favicons/favicon.ico')
+		link(rel='manifest' href='/favicons/site.webmanifest')
 
 	body
-		.wrapper
-			include ../modules/header/header
+		#app
+			.wrapper
+				include ../modules/header/header
+				.content
+					block content
+				include ../modules/footer/footer
 
-			.content
-				block content
-
-			include ../modules/footer/footer
-
-		block script
+			block script

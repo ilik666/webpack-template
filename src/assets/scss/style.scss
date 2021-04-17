@@ -29,9 +29,12 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
 }
+
 *,
 *::before,
-*::after { box-sizing: border-box }
+*::after {
+  box-sizing: border-box
+}
 
 ul,
 ol {
@@ -41,7 +44,10 @@ ol {
 
 a {
   text-decoration: underline;
-  &:hover { text-decoration: none }
+
+  &:hover {
+    text-decoration: none
+  }
 }
 
 body,
@@ -59,9 +65,13 @@ figure,
 figcaption,
 blockquote,
 dl,
-dd { margin: 0 }
+dd {
+  margin: 0
+}
 
-a:not([class]) { text-decoration-skip-ink: auto }
+a:not([class]) {
+  text-decoration-skip-ink: auto
+}
 
 img {
   max-width: 100%;
@@ -72,23 +82,37 @@ img {
 input,
 button,
 textarea,
-select { font: inherit }
-button { outline: none }
+select {
+  font: inherit
+}
+
+button {
+  outline: none
+}
+
 audio,
 canvas,
 iframe,
 img,
 svg,
 video,
-textarea { vertical-align: middle }
+textarea {
+  vertical-align: middle
+}
 
-textarea { resize: none }
+textarea {
+  resize: none
+}
 
-section { position: relative }
+section {
+  position: relative
+}
 
 input,
 select,
-button { outline: none }
+button {
+  outline: none
+}
 
 .container {
   position: relative;
@@ -113,6 +137,7 @@ button { outline: none }
 body {
   background-color: olive;
 }
+
 .test {
   width: 130px;
   height: 130px;

@@ -1,5 +1,8 @@
 <template>
-	<h1> {{ message }}</h1>
+	<div class="container" style="text-align: center">
+		<h1> {{ message }}</h1>
+		<img src="/assets/images/general/logo.png" :alt="message">
+	</div>
 </template>
 
 <script>

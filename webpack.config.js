@@ -1,9 +1,10 @@
-const { PATHS, fileName } = require('./helpers-utilities')
+const { PAGES_PUG, PATHS, fileName } = require('./helpers-utilities')
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
 
 const {
+		PugLoader,
 		VueLoader,
 		JSLoader,
 		StyleLoader,
@@ -49,6 +50,7 @@ module.exports = {
 
 	module: {
 		rules: [
+			PugLoader,
 			VueLoader,
 			JSLoader,
 			IMAGESLoader,
@@ -60,9 +62,9 @@ module.exports = {
 	plugins: [
 		CleanWebpackPlugin,
 		CopyWebpackPlugins,
-		HTMLWebpackPlugin(isProd),
 		MiniCssExtractPlugin(isProd),
-		VueLoaderPlugin
+		VueLoaderPlugin,
+		...PAGES_PUG.map( page => HTMLWebpackPlugin(page, isProd) )
 	],
 
 	resolve: {

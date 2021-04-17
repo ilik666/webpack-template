@@ -1,4 +1,4 @@
-const { PATHS, fileName } = require('./helpers-utilities')
+const { PAGE_PUG_DIR , PATHS, fileName } = require('./helpers-utilities')
 
 const _HTMLWebpackPlugin = require('html-webpack-plugin')
 const _MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -6,10 +6,22 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const _CopyWebpackPlugins = require('copy-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 
-const HTMLWebpackPlugin = mode => {
+// const HTMLWebpackPlugin = mode => {
+// 	return new _HTMLWebpackPlugin({
+// 		template: `${PATHS.src}/index.html`,
+// 		filename: './index.html',
+// 		minify: {
+// 			removeComments: mode,
+// 			collapseWhitespace: mode
+// 		},
+// 		// inject: false
+// 	})
+// }
+
+const HTMLWebpackPlugin = (page, mode) => {
 	return new _HTMLWebpackPlugin({
-		template: `${PATHS.src}/index.html`,
-		filename: './index.html',
+		template: `${PAGE_PUG_DIR }/${page}`,
+		filename: `./${page.replace(/\.pug/, '.html')}`,
 		minify: {
 			removeComments: mode,
 			collapseWhitespace: mode
