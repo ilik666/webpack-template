@@ -5,11 +5,9 @@ const isProd = !isDev
 
 const {
 		JSLoader,
-		// HTMLLoader,
 		StyleLoader,
 		IMAGESLoader,
 		FONTSLoader } = require('./loaders')
-
 
 const {
 		HTMLWebpackPlugin,
@@ -36,11 +34,10 @@ module.exports = {
 
 	module: {
 		rules: [
-			// HTMLLoader,
 			JSLoader,
+			IMAGESLoader(),
 			StyleLoader(isProd),
-			FONTSLoader,
-			IMAGESLoader(isProd)
+			FONTSLoader
 		]
 	},
 
@@ -48,7 +45,7 @@ module.exports = {
 		CleanWebpackPlugin,
 		CopyWebpackPlugins,
 		HTMLWebpackPlugin(isProd),
-		MiniCssExtractPlugin(isProd),
+		MiniCssExtractPlugin(isProd)
 	],
 
 	resolve: {
@@ -63,7 +60,11 @@ module.exports = {
 		open: true,
 		compress: true,
 		hot: true,
-		port: 3000
-	},
+		port: 3000,
+		overlay: {
+			warnings: true,
+			errors: true
+		}
+	}
 
 }
