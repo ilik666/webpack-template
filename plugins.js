@@ -8,8 +8,9 @@ const _CopyWebpackPlugins = require('copy-webpack-plugin')
 
 const HTMLWebpackPlugin = mode => {
 	return new _HTMLWebpackPlugin({
-		template: `./index.html`,
-		filename: 'index.html',
+		hash: false,
+		template: `${PATHS.src}/index.html`,
+		filename: './index.html',
 		minify: {
 			collapseWhitespace: mode
 		}
@@ -25,15 +26,15 @@ const MiniCssExtractPlugin = mode => {
 const CopyWebpackPlugins = new _CopyWebpackPlugins({
 	patterns: [
 		// Images:
-		// {
-		// 	from: `${PATHS.src}/${PATHS.assets}images`,
-		// 	to: `${PATHS.assets}images`
-		// },
+		{
+			from: `${PATHS.src}/${PATHS.assets}images`,
+			to: `${PATHS.assets}images`
+		},
 		// Fonts:
-		// {
-		// 	from: `${PATHS.src}/${PATHS.assets}fonts`,
-		// 	to: `${PATHS.assets}fonts`
-		// },
+		{
+			from: `${PATHS.src}/${PATHS.assets}fonts`,
+			to: `${PATHS.assets}fonts`
+		},
 		// Static (copy to '/'):
 		{
 			from: `${PATHS.src}/static`,
@@ -41,8 +42,6 @@ const CopyWebpackPlugins = new _CopyWebpackPlugins({
 		}
 	]
 })
-
-
 
 module.exports = {
 	HTMLWebpackPlugin,

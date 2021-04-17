@@ -16,9 +16,8 @@ const StyleLoader = mode => {
 		{
 			loader: MiniCssExtractPlugin.loader,
 			options: {
-				publicPath: (resourcePath, context) => {
-					return path.relative(path.dirname(resourcePath), context) + '/'
-				}
+			// 	// publicPath: (resourcePath, context) => path.relative(path.dirname(resourcePath), context) + '/'
+				publicPath: '../../'
 			}
 		},
 		'css-loader'
@@ -41,8 +40,7 @@ const IMAGESLoader = (mode = false) => ({
 		{
 			loader: 'file-loader',
 			options: {
-				// name: `${ PATHS.assets }images/[folder]/${ fileName('[ext]', mode) }`,
-				name: `${ fileName('[ext]', mode) }`
+				name: '[path][name].[ext]',
 			}
 		}
 	]
@@ -55,7 +53,7 @@ const FONTSLoader = {
 		{
 			loader: 'file-loader',
 			options: {
-				name: '[name].[ext]'
+				name: '[path][name].[ext]'
 			}
 		}
 	]

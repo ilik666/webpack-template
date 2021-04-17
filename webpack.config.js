@@ -43,9 +43,9 @@ module.exports = {
 
 	plugins: [
 		CleanWebpackPlugin,
-		CopyWebpackPlugins,
 		HTMLWebpackPlugin(isProd),
-		MiniCssExtractPlugin(isProd)
+		MiniCssExtractPlugin(isProd),
+		CopyWebpackPlugins
 	],
 
 	resolve: {
@@ -55,16 +55,13 @@ module.exports = {
 	devtool: isProd ? false : 'source-map',
 
 	devServer: {
-		historyApiFallback: true,
 		contentBase: PATHS.dist,
+		historyApiFallback: true,
 		open: true,
 		compress: true,
-		hot: true,
+		// hot: true,
 		port: 3000,
-		overlay: {
-			warnings: true,
-			errors: true
-		}
+		overlay: false
 	}
 
 }
