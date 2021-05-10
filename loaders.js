@@ -1,14 +1,14 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 // JS Loader
-const VueLoader = {
+const JSLoader = {
 	test: /\.js$/i,
 	loader: 'babel-loader',
 	exclude: /node_modules/,
 }
 
 // Vue Loader
-const JSLoader = {
+const VueLoader = {
 	test: /\.vue$/i,
 	loader: 'vue-loader',
 	options: {
